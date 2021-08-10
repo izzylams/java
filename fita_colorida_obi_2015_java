@@ -1,0 +1,52 @@
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner (System.in);
+		
+		int N = scan.nextInt();
+		int Q[] = new int[N];
+		int a = 0;
+        
+        for (int i = 0; i < N; i++){
+            Q[i] = scan.nextInt(); 
+        }
+        
+        for (int i = 0; i < N; i++){
+            if (Q[i] == -1){
+                while (Q[i] == -1){
+                    a++;
+                    if (i-a < 0){
+                        if (Q[i+a] == 0){
+                            Q[i] = a;
+                        }
+                    }
+                    else if (i+a >= N){
+                        if (Q[i-a] == 0){
+                            Q[i] = a;
+                        }
+                    }
+                    else{
+                        if (Q[i+a] == 0 || Q[i-a] == 0){
+                            Q[i] = a;
+                        }
+                    }
+                }
+                a = 0;
+            }
+        }
+        
+        for (int i = 0; i < N; i++){
+            if (Q[i] > 9){
+                Q[i] = 9;
+            }
+            System.out.printf ("%d", Q[i]);
+            if (i == N-1){
+                System.out.printf ("\n");
+            }
+            else{
+                System.out.printf (" ");
+            }
+        }
+	}
+}
